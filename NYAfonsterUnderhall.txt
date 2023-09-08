@@ -1,0 +1,102 @@
+
+$ Fönstret Resultat
+
+Föstret visar resultatet av otimeringen och vilken temperatur som automatiken skall styra emot. Själva styrningen görs utanför systemet.
+Ange från och med datum och timme.
+
+
+SELECT bertid,alt_id,data_date,Rtimme,Rtemp FROM resultat WHERE data_date>=230813 and Rtimme>=10 ;
+
+
+
+
+
+$ Fönstret Dagtyp
+
+I fönstret dagtyp kan man skapa en temperaturprofil. Exempelvis en helg där det kan vara kallt längre för man brukar sova längre då. Men vamare på dagen för man brukar vara hemma och inte på jobbet.
+
+I den här funktionjen kan man visa allt från början som vi gjorde från början i Dagdata. 
+
+  SELECT dagtyp,timme,Tmin,Tmax FROM Dagtyp;
+
+Vi skall alltså registrera max och min temperaturer för 24 timmar. Dessa 24 timmar tillhör en dagtyp.
+
+Nyckeln är dagtyp och timme resten är uppdsateringsfält.
+
+Om nyckeln inte finns.
+
+   INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (7,4,12,25);
+
+Om nyckeln finns.
+
+   UPDATE Dagtyp SET Tmin=12,Tmax=25 where dagtyp=7 and timme=4;
+
+Bara nyckelfälten är ifyllda.
+
+   DELETE FROM Dagtyp where dagtyp=7 and timme=4;
+
+
+
+
+$ Fönstret Kalender
+
+I föstret kalender skall vi kunna sätta en dagtyp för ett visst datum bara. Data skall redan finnas i tabellen så det räcker att kunna uppdatera. 
+
+Man visar en tom bild till att böra med.
+Man anger datum och datyp. 
+
+  UPDATE Kalender SET dagtyp=7 Where data_date=20230712;
+
+Sen visar man en select i fönstret:
+
+SELECT data_date,dagtyp from Kalender  WHERE data_date>20230712;
+
+
+
+
+$ Fönstret parametrar.
+
+Här finns bara två fält i tabellen och bara en post. Den skall alltid finnas kvar så det är bara uppdatering som är möjligt.
+
+Först
+
+  SELECT paaAlfa,avBeta FROM Parametrar.
+
+Om någon parameter ändrats.
+
+
+UPDATE Parametrar SET paaAlfa=2,avBeta=0.7);
+
+
+
+
+$ Fönstret Defaulter
+
+Här kan man lägga in värden som man kan underhålla framöver och slippa hårdkoda.
+
+SELECT xdefault,typ,varde FROM Defaulter ;
+
+Nyckeln är typ.
+
+Om nyckeln (typ) inte finns.
+
+   INSERT INTO Default (default,typ,varde) VALUES (Temperatur om saknad post,TOSP,18.0);
+
+Om nyckeln finns.
+
+   UPDATE Default SET Default=Temperatur om saknad,varde=25 where typ=TOSP;
+
+Bara nyckelfälten är ifyllda.
+
+   DELETE FROM Default where typ=TOSP  ;
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+
+sudo apt install mariadb-server
+
+sudo mysql_secure_installation # typ svara ja set passw
+
+sudo mysql -u root -p
+
+CREATE DATABASE vaader;
+
+
+
+use vaader;
+
+update KORtime set OPTnext=20230806090000  where korning="SMHIset";
+
+

@@ -1,0 +1,38 @@
+SELECT f.data_date,g.timme,c.NORDPpris*0.5 as hNORDPpris,g.Tmin,g.Tmax,(g.Tmin-e.SMHItemp)*d.avBeta*0.5 as TempNed,(d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta)*0.5 as TempUpp,f.data_date*100+g.timme as SokID,x.min,x.nrtimme,t.paav 
+FROM (Parametrar d, Kalender f)   
+JOIN (Dagtyp g,NORDP c,SMHI e, connect x,alternativ t)   
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme and g.timme=x.timme and x.nrtimme=t.timme)   
+WHERE  f.data_date*100+g.timme>=2023083021 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and t.altnr_id = 2 and (f.data_date=20230807 or f.data_date=20230808)
+ORDER BY f.data_date,g.timme,x.min;
+
+
+
+SELECT sites.site_name, subquery1.total_size
+FROM sites,
+ (SELECT site_name, SUM(file_size) AS total_size
+  FROM pages
+  GROUP BY site_name) subquery1
+WHERE subquery1.site_name = sites.site_name;
+
+select r.Rtimme, r.Rtemp , subquery1.Mbertid
+from resultat r,
+(select max(bertid) as Mbertid from resultat) subquery1
+WHERE subquery1.Mbertid=r.bertid and r.Rtimme > 14 ;
+
+select r.Rtimme, r.Rtemp , subquery1.Mbertid 
+from resultat r, (select max(bertid) as Mbertid from resultat) subquery1 
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <= 1450;
+
+select r.Rtimme, r.Rtemp , subquery1.Mbertid 
+from resultat r, (select max(bertid) as Mbertid from resultat) subquery1 
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <= 1450 order by r.bertud desc;
+
+
+SELECT r.Rtimme,r.Rmin,  r.Rtemp , subquery1.Mbertid  from resultat r, 
+(select max(bertid) as Mbertid from resultat) subquery1  
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <= 1535 
+ORDER BY r.Rtimme desc limit 1;
+
+
+
+

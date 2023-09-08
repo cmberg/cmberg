@@ -1,0 +1,31 @@
+Exempel
+
+scp file1.txt file2.txt pi@192.168.1.3:folder1/
+
+scp /home/pi/Vaader/DOK/kopierafilerpitopi.txt kopierafilerpitopi.txt   pi@192.168.0.101:/home/pi/Vaader/DOK/
+
+
+scp /home/pi/Vaader/Temp/SMHIfil.txt SMHIfil.txt   pi@192.168.0.101:/home/pi/Vaader/Temp/
+scp /home/pi/Vaader/Temp/NORDPfil.txt NORDPfil.txt   pi@192.168.0.101:/home/pi/Vaader/Temp/
+
+scp /home/pi/Vaader/Python/permuteraALTERNATIV.py  permuteraALTERNATIV.py  pi@192.168.0.101:/home/pi/Vaader/Python/
+
+scp /home/pi/Vaader/DOK/NYfonsterDagdata.txt  NYfonsterDagdata.txt pi@192.168.0.101:/home/pi/Vaader/DOK/
+scp /home/pi/Vaader/DOK/NYfunktionOptimering.txt NYfunktionOptimering.txt  pi@192.168.0.101:/home/pi/Vaader/DOK/
+scp /home/pi/Vaader/DOK/NYfonsterSimulering.txt NYfonsterSimulering.txt  pi@192.168.0.101:/home/pi/Vaader/DOK/
+
+scp /home/pi/Vaader/DOK/NYAfonsterUnderhall.txt  NYAfonsterUnderhall.txt pi@192.168.0.101:/home/pi/Vaader/DOK/
+
+scp /home/pi/Vaader/DOK/vadertabeller.txt vadertabeller.txt  pi@192.168.0.101:/home/pi/Vaader/DOK/
+
+
+scp /home/pi/Vaader/DOK/kopierafilerpitopi.txt  kopierafilerpitopi.txt  pi@192.168.0.101:/home/pi/Vaader/DOK/
+
+
+
+
+TILL PRODUKTION FRÅN UTVECKLING....
+
+scp /home/pi/JavaGrejer/ElProgram2Run1.jar ElProgram2Run1.jar  pi@192.168.0.102:/home/pi/Vaader/Java/
+
+scp /home/pi/JavaGrejer/ElProgram2Run2.jar ElProgram2Run1.jar  pi@192.168.0.102:/home/pi/Vaader/Java/

@@ -1,0 +1,61 @@
+mariadb -u root -praspberry vaader -se "SELECT   r.Rtemp  from resultat r, 
+(select max(bertid) as Mbertid from resultat) subquery1  
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  $HHMM and r.data_date= $Datum
+ORDER BY (r.Rtimme*100 + r.Rmin) desc limit 1";
+
+
+
+SELECT   r.Rtemp  from resultat r, 
+(select max(bertid) as Mbertid from resultat) subquery1  
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001 and r.data_date= 20230902
+ORDER BY (r.Rtimme*100 + r.Rmin) desc limit 1;
+
+
+SELECT   r.Rtemp  from resultat r, 
+(select bertid as Mbertid from resultat) subquery1  
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001 
+ORDER BY (r.Rtimme*100 + r.Rmin) desc limit 8;
+
+
+SELECT   r.bertid , r.Rtemp  from resultat r, 
+(select bertid as Mbertid from resultat) subquery1  
+WHERE subquery1.Mbertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001 
+ORDER BY (r.Rtimme*100 + r.Rmin) desc limit 7;
+
+
+SELECT   r.bertid , r.Rtemp , r.Rtimme, r.Rmin from resultat r 
+WHERE  (r.Rtimme*100 + r.Rmin) <=  1001 
+ORDER BY (r.Rtimme*100 + r.Rmin);
+
+Funkar...
+MariaDB [vaader]> SELECT   r.bertid , r.Rtemp  from resultat r,  (select bertid
+as Mbertid from resultat order by bertid limit 2) subquery1   WHERE subquery1.Mb
+ertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001  ORDER BY (r.Rtimme*100 + r.
+Rmin) desc limit 7;
+
+
+
+MariaDB [vaader]> SELECT   r.bertid , r.Rtemp  from resultat r,  (select DISTINCT bertid
+as Mbertid from resultat order by bertid limit 2) subquery1   WHERE subquery1.Mb
+ertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001  ORDER BY (r.Rtimme*100 + r.
+Rmin) desc limit 7;
+
+
+
+
+MariaDB [vaader]> SELECT   r.bertid , r.Rtemp  from resultat r,  (select DISTINCT bertid
+as Mbertid from resultat order by bertid limit 2) subquery1   WHERE subquery1.Mb
+ertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001  ORDER BY (r.Rtimme*100 + r.
+Rmin) desc limit 7;
+
+
+SELECT   r.bertid , r.Rtemp  from resultat r,  (select bertid
+as Mbertid from resultat order by bertid limit 2) subquery1   WHERE subquery1.Mb
+ertid=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1001  ORDER BY (r.Rtimme*100 + r.
+Rmin)  and subquery1.bertid <> (select max(bertid) as Mbertid from resultat) desc limit 7;
+
+
+
+
+
+

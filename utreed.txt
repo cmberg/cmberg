@@ -1,0 +1,45 @@
+SELECT x.nrtimme as ordning,f.data_date,g.timme,x.min,c.NORDPpris*0.5 as hNORDPpris,g.Tmin,g.Tmax,t.paav,(g.Tmin-e.SMHItemp)*d.avBeta*0.5 as TempNed,(d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta)*0.5 as TempUpp
+FROM (Parametrar d, Kalender f)   
+JOIN (Dagtyp g,NORDP c,SMHI e, connect x,alternativ t)   
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme and g.timme=x.timme and x.nrtimme=t.timme)   
+where  f.data_date*100+g.timme>=2023081218 and  f.data_date*100+g.timme<=2023081300  and x.starttimme=07 and t.altnr_id = 2 and (f.data_date=20230812 or f.data_date=20230813)
+ORDER BY f.data_date,g.timme,x.min;
+
+
+hhhhhhhhhhhhhhhhh
+
+
+SELECT x.nrtimme as ordning,f.data_date,g.timme,x.min,c.NORDPpris*0.5 as hNORDPpris,g.Tmin,g.Tmax,t.paav,(g.Tmin-e.SMHItemp)*d.avBeta*0.5 as TempNed,(d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta)*0.5 as TempUpp 
+FROM (Parametrar d, Kalender f)    
+JOIN (Dagtyp g,NORDP c,SMHI e, connect x,alternativ t)    
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme and g.timme=x.timme and x.nrtimme=t.timme)    
+where  f.data_date*100+g.timme>=2023081218 and  f.data_date*100+g.timme<=2023081300  and x.starttimme=18 and t.altnr_id = 2 and (f.data_date=20230812 or f.data_date=20230813) 
+ORDER BY f.data_date,g.timme,x.min;
+
+
+
+
+SELECT f.data_date,g.timme,c.NORDPpris,g.Tmin,g.Tmax,(g.Tmin-e.SMHItemp)*d.avBeta as TempNed,d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta as TempUpp
+FROM (Parametrar d, Kalender f)  
+JOIN (Dagtyp g,NORDP c,SMHI e)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme )  
+where  f.data_date>=20230812 and  f.data_date<=20230813  
+ORDER BY f.data_date,g.timme;
+
+
+
+SELECT f.data_date,g.timme,g.Tmin,g.Tmax
+FROM ( Kalender f)  
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp   )  
+where  f.data_date>=20230812 and  f.data_date<=20230813  
+ORDER BY f.data_date,g.timme;
+
+
+SELECT f.data_date
+FROM ( Kalender f)  
+where  f.data_date>=20230812 and  f.data_date<=20230813  
+ORDER BY f.data_date;
+
+
+
