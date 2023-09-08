@@ -1,0 +1,353 @@
+
+
+ANVÄNDS
+ Dagtyp           
+ KORtime          
+ Kalender          
+ Matdata          
+ NORDP            
+ Parametrar       
+ SMHI             
+ alternativ       
+
+
+
+HUVUDTABELLER..............
+
+create table alternativ(
+antal int not null,
+altnr_id int,
+timme int not null,
+paav int not null,
+primary key (antal,altnr_id,timme));
+
+create index antal
+on alternativ(antal);
+
+create index altnr_id
+on alternativ(altnr_id);
+
+
+INSERT INTO alternativ (antal,altnr_id ,timme,paav ) VALUES (3,2,1,0);
+SE: permuteraAlternativ.py
+
+
+
+
+
+
+create table alternativR(
+vald int,
+antal int not null,
+altnr_id int,
+paav1 int not null,
+paav2 int not null,
+paav3 int not null,
+paav4 int not null,
+paav5 int not null,
+paav6 int not null,
+paav7 int not null,
+paav8 int not null,
+paav9 int not null,
+paav10 int not null,
+paav11 int not null,
+paav12 int not null,
+primary key (altnr_id,vald));
+
+create index i1
+on alternativR(paav1);
+
+create index i2
+on alternativR(paav1,paav2);
+
+create index i3
+on alternativR(paav1,paav2,paav3);
+
+create index i4
+on alternativR(paav1,paav2,paav3,paav4);
+
+create index i5
+on alternativR(paav1,paav2,paav3,paav4,paav5);
+
+create index i6
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6);
+
+create index i7
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6,paav7);
+
+create index i8
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6,paav7,paav8);
+
+create index i9
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6,paav7,paav8,paav9);
+
+create index i10
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6,paav7,paav8,paav9,paav10);
+
+create index i11
+on alternativR(paav1,paav2,paav3,paav4,paav5,paav6,paav7,paav8,paav9,paav10,paav11);
+
+
+
+
+
+
+create table SMHI(
+data_date date not null,
+SMHItimme int not null,
+SMHItemp decimal(3,1) not null,
+primary key (data_date,SMHItimme));
+
+
+
+INSERT INTO SMHI (data_date,SMHItimme ,SMHItemp) VALUES (20230512,0,13);
+INSERT INTO SMHI (data_date,SMHItimme ,SMHItemp) VALUES (20230512,1,12.1);
+
+
+
+create table NORDP(
+data_date date not null,
+NORDPtimme int not null,
+NORDPpris decimal(4,1) not null,
+primary key (data_date,NORDPtimme));
+
+
+
+INSERT INTO SMHI (data_date,NORDPtimme ,NORDPpris) VALUES (20230512,0,13);
+INSERT INTO SMHI (data_date,NORDPtimme ,NORDPpris) VALUES (20230512,1,12.1);
+
+
+
+
+create table Kalender(
+data_date date not null,
+dagtyp int not null,
+primary key (data_date,dagtyp));
+
+
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230712,0);
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230713,1);
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230714,0);
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230715,1);
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230803,1);
+INSERT INTO Kalender (data_date,dagtyp) VALUES (20230804,1);
+
+
+create table Dagtyp(
+dagtyp int not null,
+timme int not null,
+Tmin int not null,
+Tmax int not null,
+primary key (dagtyp,timme));
+  
+
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,0,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,1,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,2,12,23);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,3,12,22);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,4,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,5,12,15);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,6,11,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,7,13,22);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,8,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,9,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,10,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,11,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,12,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,13,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,14,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,15,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,16,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,17,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,18,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,19,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,20,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,21,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,22,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (0,23,12,25);
+
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,0,12,27);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,1,12,27);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,2,12,27);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,3,12,22);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,4,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,5,12,15);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,6,11,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,7,13,22);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,8,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,9,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,10,12,27);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,11,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,12,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,13,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,14,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,15,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,16,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,17,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,18,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,19,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,20,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,21,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,22,12,25);
+INSERT INTO Dagtyp (dagtyp,timme,Tmin,Tmax) VALUES (1,23,12,25);
+
+
+
+
+
+create table Parametrar(
+paaAlfa decimal(3,1) not null,
+avBeta decimal(3,1) not null);
+
+
+INSERT INTO Parametrar (paaAlfa,avBeta) VALUES (3,0.2);
+
+
+// Detta nedan stämmer ju inte!!
+
+MariaDB [vaader]> select * from Matdata limit 1;
+
++---------------------+------+-----+
+| mattid              | inne | ute |
++---------------------+------+-----+
+| 2023-08-10 00:00:00 | 17.0 | 7.0 |
++---------------------+------+-----+
+
+
+//
+
+
+create table Matdata(
+data_date date not null,
+timme int not null,
+tempinne decimal(3,1) not null,
+tempute decimal(3,1) not null,
+primary key (data_date,timme));
+
+INSERT INTO Matdata (data_date,timme,tempinne,tempute) VALUES (20230714,0,13,7);
+INSERT INTO Matdata (data_date,timme,tempinne,tempute) VALUES (20230714,1,13,7);
+INSERT INTO Matdata (data_date,timme,tempinne,tempute) VALUES (20230714,2,12,6);
+INSERT INTO Matdata (data_date,timme,tempinne,tempute) VALUES (20230714,3,11,5);
+INSERT INTO Matdata (data_date,timme,tempinne,tempute) VALUES (20230714,4,13,7);
+
+
+
+
+CREATE TABLE KORtime (
+korning CHAR(15),
+OPTnext timestamp not null,
+primary key (korning));
+
+
+
+
+
+INSERT INTO KORtime (korning,OPTnext) VALUES ("XDriver",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("NORDPnext",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("NORDPset",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("OPTnext",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("OPTset",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("SMHInext",20230713123030);
+INSERT INTO KORtime (korning,OPTnext) VALUES ("SMHIset",20230713123030);
+
+
+
+
+MariaDB [vaader]> select* from KORtime;
++-----------+---------------------+
+| korning   | OPTnext             |
++-----------+---------------------+
+| Driver    | 2023-08-05 11:59:31 |
+| NORDPnext | 2023-08-06 18:13:17 |
+| NORDPset  | 2023-08-05 18:17:42 |
+| OPTnext   | 2023-08-13 12:30:30 |
+| OPTset    | 2023-07-13 12:30:30 |
+| SMHInext  | 2023-08-06 17:14:40 |
+| SMHIset   | 2023-08-05 16:17:16 |
++-----------+---------------------+
+
+
+Konnectortabellen slår upp tidsburken i två halvtimmar som ställs mot alternativtabellen.
+
+create table connect(
+timme int not null,
+min int not null,
+starttimme int not null,
+nrtimme int not null,
+primary key (timme,min,nrtimme));
+
+
+
+
+INSERT INTO connect (timme,min ,starttimme,nrtimme ) VALUES (21,00,21,1);
+INSERT INTO connect (timme,min ,starttimme,nrtimme ) VALUES (21,30,21,2);
+INSERT INTO connect (timme,min ,starttimme,nrtimme ) VALUES (22,00,21,3);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (22,30,21,4);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (23,00,21,5);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (23,30,21,6);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (00,00,21,7);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (00,30,21,8);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (01,00,21,9);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (01,30,21,10);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (02,00,21,11);
+INSERT INTO connect (timme,min ,starttimme,nrtimme  ) VALUES (02,30,21,12);
+
+
+
+
+create table resultat(
+bertid timestamp not null,
+typ CHAR(4) DEFAULT '',
+alt_id int not null,
+data_date date not null,
+Rtimme int not null,
+Rmin int not null,
+Rtemp decimal(3,1) not null,
+primary key (bertid,data_date,Rtimme,Rmin));
+
+create index i1
+on resultat(data_date,Rtimme);
+
+INSERT INTO resultat (bertid,alt_id ,data_date,Rtimme,Rmin,Rtemp) VALUES (20230810000000,2,20230813,10,00,23);
+INSERT INTO resultat (bertid,alt_id ,data_date,Rtimme,Rmin,Rtemp) VALUES (20230810000000,2,20230813,10,30,22);
+INSERT INTO resultat (bertid,alt_id ,data_date,Rtimme,Rmin,Rtemp) VALUES (20230813000000,2,20230815,10,00,18);
+
+
+
+CREATE TABLE Defaulter (
+xdefault CHAR(50) not null,
+typ CHAR(4) not null,
+varde decimal(3,1) not null,
+primary key (typ));
+
+INSERT INTO Defaulter (xdefault,typ,varde) VALUES ('Temperatur i resultat om missad lösning','TOSP',18.0);
+
+
+
+CREATE TABLE Matdata (
+mattid timestamp not null,
+inne decimal(3,1) not null,
+ute decimal(3,1) not null,
+primary key (mattid));
+
+INSERT INTO Matdata (mattid,inne,ute) VALUES (20230810000000,17,7);
+INSERT INTO Matdata (mattid,inne,ute) VALUES (20230810100000,17,7);
+INSERT INTO Matdata (mattid,inne,ute) VALUES (20230810200000,17,7);
+INSERT INTO Matdata (mattid,inne,ute) VALUES (20230810300000,17,7);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

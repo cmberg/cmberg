@@ -1,0 +1,25 @@
+SELECT col_name [, col_name] ...
+    INTO var_name [, var_name] ...
+    table_expr
+
+
+
+
+SELECT customer_id, firstname, surname INTO OUTFILE '/exportdata/customers.txt'
+  FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  FROM customers;
+
+$touch /home/pi/test1.txt
+
+SELECT korning, OPTnext INTO OUTFILE '/home/pi/test1.txt'
+FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+FROM KORtime;
+
+
+
+
+
+
+

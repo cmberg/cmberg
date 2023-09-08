@@ -1,0 +1,81 @@
+SELECT t.altnr_id ,SUM(paav*NORDPpris*0.5) as total_x FROM (Parametrar d, Kalender f)      
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t,alternativR r)      
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme and t.altnr_id=r.altnr_id)      
+WHERE  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and (f.data_date=20230807 or f.data_date=20230808) and r.vald=1  
+GROUP by t.altnr_id    ORDER by total_x ASC limit 7;
+
+SELECT t.altnr_id ,paav*NORDPpris*0.5 as total_x FROM (Parametrar d, Kalender f)      
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t,alternativR r)      
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme and t.altnr_id=r.altnr_id)      
+WHERE  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and (f.data_date=20230807 or f.data_date=20230808) and r.vald=1  
+ORDER by total_x ASC limit 7;
+
+
+SELECT t.altnr_id ,paav*NORDPpris*0.5 as total_x FROM (Parametrar d, Kalender f)      
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t,alternativR r)      
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme and t.altnr_id=r.altnr_id)      
+WHERE  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and (f.data_date=20230807 or f.data_date=20230808) and r.vald=1  
+ORDER by total_x ASC limit 7;
+
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme  
+FROM (Parametrar d, Kalender f)
+JOIN (Dagtyp g) 
+ON (f.dagtyp=g.dagtyp)
+; 
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme,c.NORDPpris   
+FROM (Parametrar d, Kalender f, NORDP c) 
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme);
+
+
+
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme,c.NORDPpris   
+FROM (Parametrar d, Kalender f, NORDP c) 
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimmeand x.nrtimme=t.timme);
+
+
+
+
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme,c.NORDPpris,x.starttimme,x.timme,x.min   
+FROM (Parametrar d, Kalender f, NORDP c, connect x) 
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme and g.timme=x.timme)
+WHERE x.starttimme=07
+
+;
+
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme,c.NORDPpris,x.starttimme,x.timme,x.min,x.nrtimme   
+FROM (Parametrar d, Kalender f, NORDP c, connect x) 
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme and g.timme=x.timme)
+WHERE x.starttimme=07
+;
+
+
+
+SELECT d.paaAlfa,f.data_date,f.dagtyp,g.timme,c.NORDPpris,x.starttimme,x.timme,x.min,x.nrtimme,t.paav   
+FROM (Parametrar d, Kalender f, NORDP c, connect x ,alternativ t) 
+JOIN (Dagtyp g)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme and g.timme=x.timme and x.nrtimme=t.timme and x.nrtimme=t.timme )
+WHERE x.starttimme=07 and t.altnr_id=400
+;
+
+extra test...
+
+
+SELECT t.altnr_id ,SUM(paav*NORDPpris*0.5) as total_x FROM (Parametrar d, Kalender f)      
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t,alternativR r)      
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme and t.altnr_id=r.altnr_id)      
+WHERE  f.data_date*100+g.timme>=2023083007 and  f.data_date*100+g.timme<=2023083013  and x.starttimme=07 and (f.data_date=20230830 or f.data_date=20230830) and r.vald=1  
+GROUP by t.altnr_id    ORDER by total_x ASC limit 7;
+
+
+
+ 
+

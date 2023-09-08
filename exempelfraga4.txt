@@ -1,0 +1,3 @@
+SELECT   r.Rtemp  from resultat r  
+   WHERE "20230902091651"=r.bertid and (r.Rtimme*100 + r.Rmin) <=  1548 and r.data_date= 20230902
+   ORDER BY (r.Rtimme*100 + r.Rmin) desc limit 1

@@ -1,0 +1,66 @@
+Grundfrågan
+med datumintervall 
+
+SELECT f.data_date,g.timme,c.NORDPpris,g.Tmin,g.Tmax,(g.Tmin-e.SMHItemp)*d.avBeta as TempNed,d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta as TempUpp,f.data_date*100+g.timme as SokID
+FROM (Parametrar d, Kalender f)  
+JOIN (Dagtyp g,NORDP c,SMHI e)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme )  
+where  f.data_date>=20230803 and  f.data_date<=20230808  
+ORDER BY f.data_date,g.timme;
+
+Ange datum till och från
+
+
+
+Till simulering
+
+SELECT f.data_date,g.timme,c.NORDPpris*0.5 as hNORDPpris,g.Tmin,g.Tmax,(g.Tmin-e.SMHItemp)*d.avBeta*0.5 as TempNed,(d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta)*0.5 as TempUpp,f.data_date*100+g.timme as SokID,x.min,x.nrtimme,t.paav 
+FROM (Parametrar d, Kalender f)   
+JOIN (Dagtyp g,NORDP c,SMHI e, connect x,alternativ t)   
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme and g.timme=x.timme and x.nrtimme=t.timme)   
+where  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and t.altnr_id = 2 and (f.data_date=20230807 or f.data_date=20230808)
+ORDER BY f.data_date,g.timme,x.min;
+
+
+För sökning krävs.
+Dagens datum 20230807
+Tid för simulerimgems början 21
+Datum tid från simuleringnes början + 6 timmar
+
+.
+
+Sokorning optimering
+
+select altnr_id ,SUM(paav*NORDPpris*0.5) as total_x FROM (Parametrar d, Kalender f)     
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t)     
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme)     
+where  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and (f.data_date=20230807 or f.data_date=20230808)  
+group by altnr_id   
+order by total_x ASC limit 1;
+
+
+
+UTVECKLING
+
+sökordning med bortval.
+
+select t.altnr_id ,SUM(paav*NORDPpris*0.5) as total_x FROM (Parametrar d, Kalender f)     
+JOIN (Dagtyp g,NORDP c,connect x,alternativ t,alternativR r)     
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and  g.timme=x.timme and x.nrtimme=t.timme and t.altnr_id=r.altnr_id)     
+where  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and (f.data_date=20230807 or f.data_date=20230808) and r.vald=1 
+group by t.altnr_id   
+order by total_x ASC limit 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+Uppdaterat fönster Dagdata
+
+Eftersoom data hämtas automatiskt behövs bara visafuktionen nedan. Man anger två datum mellan vilka datat visas.
+
+SELECT f.data_date,g.timme,c.NORDPpris,g.Tmin,g.Tmax,(g.Tmin-e.SMHItemp)*d.avBeta as TempNed,d.paaAlfa-(g.Tmin-e.SMHItemp)*d.avBeta as TempUpp
+FROM (Parametrar d, Kalender f)  
+JOIN (Dagtyp g,NORDP c,SMHI e)  
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme )  
+where  f.data_date>=20230803 and  f.data_date<=20230808  
+ORDER BY f.data_date,g.timme;
+
+Ange datum till och från
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

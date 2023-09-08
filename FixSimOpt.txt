@@ -1,0 +1,56 @@
+
+Lite ändringar i simulering och optimeringsfunktionerna avser temperatur beräkning.
+
+Vi tar bort temperaturberäkningen ur SQL stasen.
+
+SELECT x.nrtimme as ordning,f.data_date,g.timme,x.min,c.NORDPpris*0.5 as hNORDPpris,g.Tmin,g.Tmax,paav
+FROM ( Kalender f)   
+JOIN (Dagtyp g,NORDP c,SMHI e, connect x,alternativ t)   
+ON (f.dagtyp=g.dagtyp and c.data_date=f.data_date and g.timme = c.NORDPtimme  and c.data_date=e.data_date and g.timme = e.SMHItimme and g.timme=x.timme and x.nrtimme=t.timme)   
+where  f.data_date*100+g.timme>=2023080721 and  f.data_date*100+g.timme<=2023080803  and x.starttimme=21 and t.altnr_id = 2 and (f.data_date=20230807 or f.data_date=20230808)
+ORDER BY f.data_date,g.timme,x.min;
+
+Temperatusberäkmomning sker i stället i programmet.
+
+Vi behöver två parametrar.
+SELECT paaAlfa, avBeta from Parametrar;
+
+Vi har ju också temperaturen som hämtas från som anges i Simulering och hämntas från Matdata i optimering.
+
+Per rad beräknas:
+om paav=0 -> (TEMP-SMHItemp)*avBeta*0.5 
+om paav=1 -> paaAlfa - ((TEMP-SMHItemp)*avBeta*0.5) 
+
+TEMP är temperaturen från föregående rad. För första raden hämras temperaturen från bilden i simulerin g 
+och från tabellen Matdata i optimering.
+
+I bilden visar man om paav=1 berökningen i fönstret TempUpp om paav=1 och noll i nerfältet. tvärrt om för paav=0. 
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

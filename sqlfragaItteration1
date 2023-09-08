@@ -1,0 +1,74 @@
+
+
+SELECT b.data_date,b.timmedag,b.kost,b.tempupp,b.tempned,t.antal,t.altnr_id,t.timme,t.paav
+FROM dagdata b
+JOIN alternativ t
+ON b.timmedag = t.timme
+where b.data_date=20230714 and antal = 3 and t.altnr_id = 2
+ORDER BY b.data_date,b.timmedag;
+
+RESULTAT
+
++------------+----------+------+---------+---------+-------+----------+-------+------+
+| data_date  | timmedag | kost | tempupp | tempned | antal | altnr_id | timme | paav |
++------------+----------+------+---------+---------+-------+----------+-------+------+
+| 2023-07-14 |        1 |  2.2 |     5.0 |     3.0 |     3 |        2 |     1 |    0 |
+| 2023-07-14 |        2 |  1.2 |     5.0 |     3.0 |     3 |        2 |     2 |    0 |
+| 2023-07-14 |        3 |  3.2 |     5.0 |     3.0 |     3 |        2 |     3 |    1 |
+| 2023-07-14 |        4 |  4.0 |     5.0 |     3.0 |     3 |        2 |     4 |    1 |
+| 2023-07-14 |        5 |  2.2 |     5.0 |     3.0 |     3 |        2 |     5 |    0 |
+| 2023-07-14 |        6 |  2.2 |     5.0 |     3.0 |     3 |        2 |     6 |    1 |
++------------+----------+------+---------+---------+-------+----------+-------+------+
+
+
+Till bilden i fonstret tre variabler
+
+
+timme   
+kostnad
+temperatur
+
+
+* timme som resultat visar (vi kan borja hordkodat i rad noll med 20 grader)
+
+* kostnad om paav=1 sa ar kostnad kost+kostnad foregaende rad. om paav=0 sa ar kostnad samma som foregande rad.
+
+* temperatur om paav=1 sa addera tempupp till temperatur foregande rad om paav=0 dra i fran tempned fran foregande rad.
+
+
+EXEMPEL fonsster simulerin
+
+timme    kostnad    temperatur
+1        0          17
+2        0          14
+3        3.2        19
+4        7.2        24
+5        7.2        21
+6        9.4        24
+
+************
+Kolla om post finns.
+
+SELECT data_date,timmedag
+FROM dagdata 
+where data_date=20230714 and timmedag=1;
+
+*************
+
+INSERT INTO dagdata (data_date,timmedag, kost,tempupp,tempned) 
+VALUES (20230724,1,4,4,4);
+
+UPDATE dagdata 
+set kost=13,tempupp=4,tempned=1
+where data_date=20230714 and timmedag=1;
+
+
+DELETE FROM dagdata 
+where data_date=20230724 and timmedag=1;
+
+
+
+
+
+
+
