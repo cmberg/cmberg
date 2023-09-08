@@ -1,0 +1,10 @@
+$ pip install python-dateutil
+Requirement already satisfied (use --upgrade to upgrade): python-dateutil in /System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python
+Cleaning up...
+$ python
+Python 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) 
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+>>> import dateutil
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named dateutil
